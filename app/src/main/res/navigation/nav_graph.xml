@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.wit.voguely.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginSignUpFragment"
+            app:destination="@id/loginSignUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginSignUpFragment"
+        android:name="com.wit.voguely.LoginSignUpFragment"
+        android:label="fragment_login_sign_up"
+        tools:layout="@layout/fragment_login_sign_up" />
+</navigation>
