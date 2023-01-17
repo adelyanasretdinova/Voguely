@@ -1,21 +1,26 @@
-package com.wit.voguely
+package com.wit.voguely.ui.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayout
 import com.wit.voguely.databinding.FragmentLoginSignUpBinding
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.wit.voguely.R
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class LoginSignUpFragment : Fragment() {
     private lateinit var binding: FragmentLoginSignUpBinding
+    private lateinit var viewModel: LoginSignUpViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this)[LoginSignUpViewModel::class.java]
 
     }
 
@@ -30,22 +35,17 @@ class LoginSignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            viewModel.selectedTab.collectLatest { selectedTab ->
+                setSelectedTabText(selectedTab)
+            }
+        }
 
 
         binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(selectedTab: TabLayout.Tab) {
-                val loginTab = binding.tabLayout.getTabAt(0)
-                if (loginTab!= null) {
-                    if (selectedTab == loginTab) {
-                        binding.welcomeText.text = getString(R.string.welcome_back)
-                        binding.loginSignUpButton.text =
-                            getString(R.string.login)
-                    } else {
-                        binding.welcomeText.text = getString(R.string.join_now)
-                        binding.loginSignUpButton.text =
-                            getString(R.string.signup)
-                    }
-                }
+                val loginTab = binding.tabLayout.getTabAt(0)?.isSelected ?: false
+                viewModel.onSelectedTabChanged(if (loginTab) SelectedTab.LOGIN else SelectedTab.SIGN_UP)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -54,5 +54,18 @@ class LoginSignUpFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
+    }
+    private fun setSelectedTabText(selectedTab: SelectedTab) {
+//        if (selectedTab == SelectedTab.LOGIN) {
+//            binding.welcomeText.text = getString(R.string.welcome_back)
+//            binding.loginSignUpButton.text =
+//                getString(R.string.login)
+//        } else {
+//            binding.welcomeText.text = getString(R.string.join_now)
+//            binding.loginSignUpButton.text =
+//                getString(R.string.signup)
+//        }
+        binding.welcomeText.setText(selectedTab.welcomeMessage)
+        binding.loginSignUpButton.setText(selectedTab.buttonText)
     }
 }

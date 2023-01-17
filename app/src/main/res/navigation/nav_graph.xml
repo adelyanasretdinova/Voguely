@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.wit.voguely.SplashFragment"
+        android:name="com.wit.voguely.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginSignUpFragment"
-        android:name="com.wit.voguely.LoginSignUpFragment"
+        android:name="com.wit.voguely.ui.login.LoginSignUpFragment"
         android:label="fragment_login_sign_up"
         tools:layout="@layout/fragment_login_sign_up" />
 </navigation>
