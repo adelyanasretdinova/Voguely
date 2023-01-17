@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.wit.voguely.databinding.FragmentLoginSignUpBinding
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -54,6 +55,10 @@ class LoginSignUpFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
+
+        binding.loginSignUpButton.setOnClickListener{
+            findNavController().navigate(R.id.action_loginSignUpFragment_to_mainFragment)
+        }
     }
     private fun setSelectedTabText(selectedTab: SelectedTab) {
 //        if (selectedTab == SelectedTab.LOGIN) {
