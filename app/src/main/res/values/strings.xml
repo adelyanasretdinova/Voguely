@@ -14,4 +14,7 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="cart">Cart</string>
+    <string name="_4_7">4.7</string>
+    <string name="_86_reviews">86 Reviews</string>
+    <string name="productimage">productImage</string>
 </resources>

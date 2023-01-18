@@ -61,15 +61,6 @@ class LoginSignUpFragment : Fragment() {
         }
     }
     private fun setSelectedTabText(selectedTab: SelectedTab) {
-//        if (selectedTab == SelectedTab.LOGIN) {
-//            binding.welcomeText.text = getString(R.string.welcome_back)
-//            binding.loginSignUpButton.text =
-//                getString(R.string.login)
-//        } else {
-//            binding.welcomeText.text = getString(R.string.join_now)
-//            binding.loginSignUpButton.text =
-//                getString(R.string.signup)
-//        }
         binding.welcomeText.setText(selectedTab.welcomeMessage)
         binding.loginSignUpButton.setText(selectedTab.buttonText)
     }
