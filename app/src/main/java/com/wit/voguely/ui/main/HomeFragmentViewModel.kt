@@ -23,7 +23,7 @@ class HomeFragmentViewModel : ViewModel() {
 
         viewModelScope.launch {
             _liveProgressBar.update { true }
-            _productData.update { listOf(productOne,productTwo) }
+            _productData.update { listOf(productOne,productTwo, productThree, productFour, productFive, productSix, productSeven, productEight, productNine, productTen) }
             _liveProgressBar.update { false }
         }
     }

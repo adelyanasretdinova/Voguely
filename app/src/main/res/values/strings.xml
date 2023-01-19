@@ -17,4 +17,14 @@
     <string name="_4_7">4.7</string>
     <string name="_86_reviews">86 Reviews</string>
     <string name="productimage">productImage</string>
+
+
+    <string-array name="products_array">
+        <item> "Headphones" </item>
+        <item> "Phone" </item>
+        <item> "Watch" </item>
+        <item> "Headphones" </item>
+        <item> "Phone" </item>
+        <item> "Watch" </item>
+    </string-array>
 </resources>
