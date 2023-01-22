@@ -2,13 +2,13 @@ package com.wit.voguely.ui.main
 
 import com.wit.voguely.R
 
-class Products (
-    var image:Int = R.drawable.headphoneswhite,
-    var name:String = "Headphones Sony",
-    var price: String = "100 EUR",
-    var rating: String = "4.8",
-    var review: String = "231 Reviews"
-        )
+class Products(
+    var image: Int,
+    var name: String,
+    var price: String,
+    var rating: String,
+    var review: String
+)
 
 var productOne: Products = Products(
     R.drawable.watch,
@@ -80,4 +80,33 @@ var productTen: Products = Products(
     "800 EUR",
     "3.9",
     "71 Reviews"
+)
+
+class ProductsInCart(
+    var image: Int,
+    var name: String,
+    var price: String,
+)
+
+var productCartOne: ProductsInCart = ProductsInCart(
+    R.drawable.watch,
+    "Humidifyer",
+    "800 EUR",
+)
+
+var productCartTwo: ProductsInCart = ProductsInCart(
+    R.drawable.phone,
+    "Phone",
+    "500 EUR",
+)
+var productCartThree: ProductsInCart = ProductsInCart(
+    R.drawable.headphoneswhite,
+    "Humidifyer",
+    "800 EUR",
+)
+
+var productCartFour: ProductsInCart = ProductsInCart(
+    R.drawable.watch,
+    "Phone",
+    "100 EUR",
 )

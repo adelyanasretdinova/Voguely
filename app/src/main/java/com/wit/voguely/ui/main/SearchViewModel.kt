@@ -34,7 +34,6 @@ class SearchViewModel : ViewModel() {
                     productTen
                 ).filter { it.name.contains(s, ignoreCase = true) }
             }
-
                 _noResult.update { _searchedItems.value.isEmpty()}
         }
     }

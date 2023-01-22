@@ -19,7 +19,6 @@ class SearchFragment : Fragment() {
     private val adapter: RecyclerViewAdapter = RecyclerViewAdapter()
     private lateinit var viewModel: SearchViewModel
 
-//    var itemsList = listOf<Products>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
