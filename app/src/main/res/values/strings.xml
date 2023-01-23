@@ -17,6 +17,9 @@
     <string name="_4_7">4.7</string>
     <string name="_86_reviews">86 Reviews</string>
     <string name="productimage">productImage</string>
+    <string name="buy">Buy</string>
+    <string name="total_price">Total Price:</string>
+    <string name="no_results_found">No results found</string>
 
 
     <string-array name="products_array">

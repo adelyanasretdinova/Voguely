@@ -11,9 +11,14 @@ class RecyclerViewAdapter() :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     var itemsList = listOf<Products>()
+    var onItemClick: ((Products) -> Unit)? = null
 
     inner class ViewHolder(val binding: OneItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        init {}
+        init {
+            binding.image.setOnClickListener{
+                onItemClick?.invoke(itemsList[adapterPosition])
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

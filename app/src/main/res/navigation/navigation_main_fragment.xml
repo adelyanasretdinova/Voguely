@@ -8,7 +8,11 @@
         android:id="@+id/homeFragment"
         android:name="com.wit.voguely.ui.main.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_PDPFragment"
+            app:destination="@id/PDPFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.wit.voguely.ui.main.CartFragment"
@@ -19,4 +23,8 @@
         android:name="com.wit.voguely.ui.main.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/PDPFragment"
+        android:name="com.wit.voguely.ui.main.PDPFragment"
+        android:label="PDPFragment" />
 </navigation>

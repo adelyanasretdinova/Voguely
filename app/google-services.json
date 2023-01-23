@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "988788100543",
+    "project_id": "voguely-cd971",
+    "storage_bucket": "voguely-cd971.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988788100543:android:66363f911563dccc0f650a",
+        "android_client_info": {
+          "package_name": "com.wit.voguely"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988788100543-pf2db7t6agplkqk1aaqgj3quccu8vps2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVpJYCqfyPFlGTSV1u72_gjA9yedNvjSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988788100543-pf2db7t6agplkqk1aaqgj3quccu8vps2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
