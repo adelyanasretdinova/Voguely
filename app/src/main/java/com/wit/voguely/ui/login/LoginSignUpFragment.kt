@@ -1,17 +1,18 @@
 package com.wit.voguely.ui.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
-import com.wit.voguely.databinding.FragmentLoginSignUpBinding
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.wit.voguely.R
+import com.wit.voguely.databinding.FragmentLoginSignUpBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -41,6 +42,11 @@ class LoginSignUpFragment : Fragment() {
                 setSelectedTabText(selectedTab)
             }
         }
+        lifecycleScope.launch{
+            viewModel.event.collectLatest { event ->
+                setEvent(event)
+            }
+        }
 
 
         binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
@@ -56,10 +62,27 @@ class LoginSignUpFragment : Fragment() {
             }
         })
 
-        binding.loginSignUpButton.setOnClickListener{
-            findNavController().navigate(R.id.action_loginSignUpFragment_to_mainFragment)
+        binding.loginSignUpButton.setOnClickListener {
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
+            viewModel.buttonClicked(email, password)
         }
     }
+
+    private fun navigateToMain() {
+        findNavController().navigate(R.id.action_loginSignUpFragment_to_mainFragment)
+    }
+
+    private fun setEvent(event: LoginEvent) {
+        when (event) {
+            is LoginFail -> Toast.makeText(
+                requireContext(),
+                "Incorrect email or passport",
+                Toast.LENGTH_LONG).show()
+            is LoginSuccess -> navigateToMain()
+        }
+    }
+
     private fun setSelectedTabText(selectedTab: SelectedTab) {
         binding.welcomeText.setText(selectedTab.welcomeMessage)
         binding.loginSignUpButton.setText(selectedTab.buttonText)
