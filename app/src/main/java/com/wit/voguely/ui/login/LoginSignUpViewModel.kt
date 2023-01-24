@@ -12,8 +12,10 @@ import kotlinx.coroutines.tasks.await
 class LoginSignUpViewModel : ViewModel() {
     private val _selectedTab = MutableStateFlow(SelectedTab.LOGIN)
     val selectedTab = _selectedTab.asStateFlow()
-    private val _event = MutableSharedFlow<LoginEvent>()
-    val event = _event.asSharedFlow()
+    private val _eventLogin = MutableSharedFlow<LoginEvent>()
+    val eventLogin = _eventLogin.asSharedFlow()
+    private val _eventSignUp = MutableSharedFlow<LoginEvent>()
+    val eventSignUp = _eventSignUp.asSharedFlow()
 
     fun onSelectedTabChanged(selectedTab: SelectedTab) {
         viewModelScope.launch {
@@ -35,9 +37,9 @@ class LoginSignUpViewModel : ViewModel() {
             Firebase.auth
                 .createUserWithEmailAndPassword(email, password)
                 .await()
-            _event.emit(LoginSuccess)
+            _eventSignUp.emit(LoginSuccess)
         } catch (e: Exception) {
-            _event.emit(LoginFail(e.localizedMessage))
+            _eventSignUp.emit(LoginFail(e.localizedMessage))
         }
     }
 
@@ -46,9 +48,9 @@ class LoginSignUpViewModel : ViewModel() {
             Firebase.auth
                 .signInWithEmailAndPassword(email, password)
                 .await()
-            _event.emit(LoginSuccess)
+            _eventLogin.emit(LoginSuccess)
         } catch (e: Exception) {
-            _event.emit(LoginFail(e.localizedMessage))
+            _eventLogin.emit(LoginFail(e.localizedMessage))
         }
     }
 }
