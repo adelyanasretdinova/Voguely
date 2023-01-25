@@ -43,16 +43,10 @@ class LoginSignUpFragment : Fragment() {
             }
         }
         lifecycleScope.launch {
-            viewModel.eventLogin.collectLatest { event ->
+            viewModel.event.collectLatest { event ->
                 setEventLogIn(event)
             }
         }
-        lifecycleScope.launch {
-            viewModel.eventSignUp.collectLatest { event ->
-                setEventSignUp(event)
-            }
-        }
-
 
         binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(selectedTab: TabLayout.Tab) {
@@ -78,15 +72,6 @@ class LoginSignUpFragment : Fragment() {
         findNavController().navigate(R.id.action_loginSignUpFragment_to_mainFragment)
     }
 
-    private fun navigatetoLogIn() {
-        Toast.makeText(
-            requireContext(),
-            "Your account has created",
-            Toast.LENGTH_LONG
-        ).show()
-        SelectedTab.LOGIN
-    }
-
     private fun setEventLogIn(event: LoginEvent) {
         when (event) {
             is LoginFail -> Toast.makeText(
@@ -95,18 +80,6 @@ class LoginSignUpFragment : Fragment() {
                 Toast.LENGTH_LONG
             ).show()
             is LoginSuccess -> navigateToMain()
-        }
-    }
-
-    private fun setEventSignUp(event: LoginEvent) {
-        when (event) {
-            is LoginFail -> Toast.makeText(
-                requireContext(),
-                "Incorrect email or passport",
-                Toast.LENGTH_LONG
-            ).show()
-            is LoginSuccess ->
-                navigatetoLogIn()
         }
     }
 
