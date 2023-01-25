@@ -1,21 +1,27 @@
 package com.wit.voguely.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentMainBinding
+import com.wit.voguely.ui.login.LoginSignUpViewModel
 
 class MainFragment : Fragment() {
-private lateinit var binding: FragmentMainBinding
+    private lateinit var binding: FragmentMainBinding
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
     }
 
@@ -31,11 +37,27 @@ private lateinit var binding: FragmentMainBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpNavigation()
+        setUpToolbar()
 
-        val navHostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment_container)
-                as NavHostFragment
+    }
+
+    private fun setUpNavigation() {
+        val navHostFragment =
+            childFragmentManager.findFragmentById(R.id.nav_host_fragment_container)
+                    as NavHostFragment
         val navController = navHostFragment.findNavController()
+        val appBarConfiguration = AppBarConfiguration(binding.bottomNavigation.menu)
         binding.bottomNavigation.setupWithNavController(navController)
+        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
+    }
 
+    private fun setUpToolbar() {
+        binding.toolbar.inflateMenu(R.menu.main_menu)
+        binding.toolbar.menu.findItem(R.id.signOut).setOnMenuItemClickListener{
+            viewModel.signOut()
+            findNavController().navigate(R.id.action_mainFragment_to_loginSignUpFragment)
+            return@setOnMenuItemClickListener false
+        }
     }
 }
