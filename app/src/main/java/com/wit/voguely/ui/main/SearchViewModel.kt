@@ -21,18 +21,7 @@ class SearchViewModel : ViewModel() {
         viewModelScope.launch {
 
             _searchedItems.update {
-                listOf(
-                    productOne,
-                    productTwo,
-                    productThree,
-                    productFour,
-                    productFive,
-                    productSix,
-                    productSeven,
-                    productEight,
-                    productNine,
-                    productTen
-                ).filter { it.name.contains(s, ignoreCase = true) }
+                listOf<Products>().filter { it.name.contains(s, ignoreCase = true) }
             }
                 _noResult.update { _searchedItems.value.isEmpty()}
         }

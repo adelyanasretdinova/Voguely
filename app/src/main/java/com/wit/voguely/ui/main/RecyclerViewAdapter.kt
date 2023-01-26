@@ -32,9 +32,9 @@ class RecyclerViewAdapter() :
             .load(itemsList[position].image)
             .into(holder.binding.image)
         holder.binding.name.text = itemsList[position].name
-        holder.binding.price.text = itemsList[position].price
-        holder.binding.rating.text = itemsList[position].rating
-        holder.binding.review.text = itemsList[position].review
+        holder.binding.price.text = itemsList[position].price.toString()
+        holder.binding.rating.text = itemsList[position].rating.toString()
+        holder.binding.review.text = itemsList[position].reviews.toString()
     }
 
     override fun getItemCount(): Int {

@@ -48,12 +48,12 @@ class HomeFragment : Fragment() {
                 binding.progressbar.isVisible = it
             }
         }
-        adapter.onItemClick = {
-            val bundle = Bundle()
-            bundle.putInt("photo", it.image)
-            bundle.putString("name", it.name)
-            findNavController().navigate(R.id.action_homeFragment_to_PDPFragment)
-        }
+//        adapter.onItemClick = {
+//            val bundle = Bundle()
+//            bundle.putInt("photo", it.image)
+//            bundle.putString("name", it.name)
+//            findNavController().navigate(R.id.action_homeFragment_to_PDPFragment)
+//        }
 
         binding.recycleView.adapter = adapter
     }
