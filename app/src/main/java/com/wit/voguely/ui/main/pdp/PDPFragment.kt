@@ -1,15 +1,17 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.ui.main.pdp
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentPDPBinding
+import com.wit.voguely.ui.main.Products
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -58,6 +60,15 @@ class PDPFragment : Fragment() {
             }
         }
 
+//        binding.addToCart.setOnClickListener{
+//            productToCard()
+//        }
 
     }
+
+
+//    private fun productToCard (product: Products) {
+//        val bundle = Bundle()
+//        bundle.putString("id", product.id)
+//    }
 }

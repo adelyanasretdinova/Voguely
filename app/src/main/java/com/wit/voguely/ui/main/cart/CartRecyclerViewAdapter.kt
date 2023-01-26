@@ -1,10 +1,12 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.ui.main.cart
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wit.voguely.databinding.OneItemInCartBinding
+import com.wit.voguely.ui.main.Products
+import com.wit.voguely.ui.main.ProductsInCart
 
 class CartRecyclerViewAdapter() :
     RecyclerView.Adapter<CartRecyclerViewAdapter.ViewHolder>() {
@@ -15,11 +17,6 @@ class CartRecyclerViewAdapter() :
 
     inner class ViewHolder(val binding: OneItemInCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        init {
-            binding.delete.setOnClickListener {
-                onItemClick?.invoke(productsInCart[adapterPosition])
-            }
-        }
     }
 
     override fun onCreateViewHolder(
@@ -37,7 +34,7 @@ class CartRecyclerViewAdapter() :
             .load(productsInCart[position].image)
             .into(holder.binding.image)
         holder.binding.name.text = productsInCart[position].name
-        holder.binding.price.text = productsInCart[position].price
+        holder.binding.price.text = productsInCart[position].price.toString()
 
     }
 

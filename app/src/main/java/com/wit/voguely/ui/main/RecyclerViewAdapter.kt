@@ -1,6 +1,7 @@
 package com.wit.voguely.ui.main
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,11 +13,15 @@ class RecyclerViewAdapter() :
 
     var itemsList = listOf<Products>()
     var onItemClick: ((Products) -> Unit)? = null
+    var dropDownClick: ((Products, View) -> Unit)? = null
 
     inner class ViewHolder(val binding: OneItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.image.setOnClickListener{
+            binding.image.setOnClickListener {
                 onItemClick?.invoke(itemsList[adapterPosition])
+            }
+            binding.dropdownMenu.setOnClickListener {
+                dropDownClick?.invoke(itemsList[adapterPosition], it)
             }
         }
     }
@@ -40,6 +45,6 @@ class RecyclerViewAdapter() :
     }
 
     override fun getItemCount(): Int {
-       return itemsList.size
+        return itemsList.size
     }
 }

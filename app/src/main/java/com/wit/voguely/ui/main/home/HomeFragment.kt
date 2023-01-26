@@ -1,9 +1,10 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.ui.main.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentHomeBinding
+import com.wit.voguely.ui.main.Products
+import com.wit.voguely.ui.main.RecyclerViewAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -51,23 +54,28 @@ class HomeFragment : Fragment() {
         adapter.onItemClick = {
             productClicked(it)
         }
+        adapter.dropDownClick = { product, view ->
+            onDropDownMenuClick (product, view)
+        }
 
         binding.recycleView.adapter = adapter
     }
 
 
-    private fun productClicked (product: Products) {
+    private fun productClicked(product: Products) {
         val bundle = Bundle()
         bundle.putString("id", product.id)
-//            bundle.putString("name", it.name)
-//            bundle.putInt("price", it.price)
-//            bundle.putDouble("rating", it.rating)
-//            bundle.putString("description", it.description)
-//            bundle.putString("eur", it.currency)
 
         parentFragment
             ?.parentFragment
             ?.findNavController()
-            ?.navigate(R.id.action_mainFragment_to_PDPFragment,bundle)
+            ?.navigate(R.id.action_mainFragment_to_PDPFragment, bundle)
+    }
+
+    private fun onDropDownMenuClick(product: Products, view: View) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        val inflater = popupMenu.menuInflater
+        inflater.inflate(R.menu.pop_up_menu, popupMenu.menu)
+        popupMenu.show()
     }
 }

@@ -1,7 +1,8 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.ui.main.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.wit.voguely.ui.main.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

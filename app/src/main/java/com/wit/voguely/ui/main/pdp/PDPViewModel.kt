@@ -1,9 +1,9 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.ui.main.pdp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wit.voguely.remote.ProductDataSource
-import com.wit.voguely.remote.ProductsDataSource
+import com.wit.voguely.ui.main.Products
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

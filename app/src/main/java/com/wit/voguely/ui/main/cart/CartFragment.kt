@@ -1,4 +1,4 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.ui.main.cart
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -52,11 +52,6 @@ class CartFragment : Fragment() {
             }
         }
 
-//        adapter.onItemClick = {
-//            ProductsInCart -> ProductsInCart
-//
-//
-//        }
 
         binding.cartRecyclerView.adapter = adapter
     }

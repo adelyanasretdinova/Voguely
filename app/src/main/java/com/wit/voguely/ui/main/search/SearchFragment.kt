@@ -1,4 +1,4 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.ui.main.search
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,7 +10,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentSearchBinding
+import com.wit.voguely.ui.main.Products
+import com.wit.voguely.ui.main.RecyclerViewAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -51,6 +55,9 @@ class SearchFragment : Fragment() {
             }
         }
 
+        adapter.onItemClick = {
+            productClicked(it)
+        }
         binding.searchbar.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -71,6 +78,16 @@ class SearchFragment : Fragment() {
         })
 
         binding.productview.adapter = adapter
+    }
+
+    private fun productClicked(product: Products) {
+        val bundle = Bundle()
+        bundle.putString("id", product.id)
+
+        parentFragment
+            ?.parentFragment
+            ?.findNavController()
+            ?.navigate(R.id.action_mainFragment_to_PDPFragment, bundle)
     }
 
 }

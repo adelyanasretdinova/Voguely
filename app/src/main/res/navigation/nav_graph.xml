@@ -46,6 +46,6 @@
     </fragment>
     <fragment
         android:id="@+id/PDPFragment"
-        android:name="com.wit.voguely.ui.main.PDPFragment"
+        android:name="com.wit.voguely.ui.main.pdp.PDPFragment"
         android:label="PDPFragment" />
 </navigation>
