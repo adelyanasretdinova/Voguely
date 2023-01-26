@@ -51,6 +51,7 @@
         android:layout_marginTop="10dp"
         android:textSize="18sp"/>
     <TextView
+        android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="A knee-lenght black dress with a v-neckline and a belt and high-waist jeans"

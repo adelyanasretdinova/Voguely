@@ -48,14 +48,26 @@ class HomeFragment : Fragment() {
                 binding.progressbar.isVisible = it
             }
         }
-//        adapter.onItemClick = {
-//            val bundle = Bundle()
-//            bundle.putInt("photo", it.image)
-//            bundle.putString("name", it.name)
-//            findNavController().navigate(R.id.action_homeFragment_to_PDPFragment)
-//        }
+        adapter.onItemClick = {
+            productClicked(it)
+        }
 
         binding.recycleView.adapter = adapter
     }
 
+
+    private fun productClicked (product: Products) {
+        val bundle = Bundle()
+        bundle.putString("id", product.id)
+//            bundle.putString("name", it.name)
+//            bundle.putInt("price", it.price)
+//            bundle.putDouble("rating", it.rating)
+//            bundle.putString("description", it.description)
+//            bundle.putString("eur", it.currency)
+
+        parentFragment
+            ?.parentFragment
+            ?.findNavController()
+            ?.navigate(R.id.action_mainFragment_to_PDPFragment,bundle)
+    }
 }

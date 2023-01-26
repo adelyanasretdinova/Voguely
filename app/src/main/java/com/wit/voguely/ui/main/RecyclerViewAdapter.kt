@@ -32,7 +32,9 @@ class RecyclerViewAdapter() :
             .load(itemsList[position].image)
             .into(holder.binding.image)
         holder.binding.name.text = itemsList[position].name
-        holder.binding.price.text = itemsList[position].price.toString()
+        val eur = itemsList[position].currency
+        val amount = itemsList[position].price.toString()
+        holder.binding.price.text = eur + amount
         holder.binding.rating.text = itemsList[position].rating.toString()
         holder.binding.review.text = itemsList[position].reviews.toString()
     }
