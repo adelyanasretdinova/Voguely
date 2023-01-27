@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentPDPBinding
+import com.wit.voguely.remote.ProductDataSource
 import com.wit.voguely.ui.main.Products
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 class PDPFragment : Fragment() {
     private lateinit var binding: FragmentPDPBinding
     private lateinit var viewModel: PDPViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,15 +62,13 @@ class PDPFragment : Fragment() {
             }
         }
 
-//        binding.addToCart.setOnClickListener{
-//            productToCard()
-//        }
+        binding.addToCart.setOnClickListener{
+            if (idProduct != null) {
+                viewModel.addProduct(idProduct)
+            }
+            // when carts.contains(id)
+//            quantity ++
+        }
 
     }
-
-
-//    private fun productToCard (product: Products) {
-//        val bundle = Bundle()
-//        bundle.putString("id", product.id)
-//    }
 }

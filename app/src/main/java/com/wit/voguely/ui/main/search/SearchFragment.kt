@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -58,6 +59,11 @@ class SearchFragment : Fragment() {
         adapter.onItemClick = {
             productClicked(it)
         }
+
+        adapter.dropDownClick = { product, view ->
+            onDropDownMenuClick (product, view)
+        }
+
         binding.searchbar.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -88,6 +94,18 @@ class SearchFragment : Fragment() {
             ?.parentFragment
             ?.findNavController()
             ?.navigate(R.id.action_mainFragment_to_PDPFragment, bundle)
+    }
+
+    private fun onDropDownMenuClick(product: Products, view: View) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        val inflater = popupMenu.menuInflater
+        inflater.inflate(R.menu.pop_up_menu, popupMenu.menu)
+        popupMenu.show()
+
+        popupMenu.setOnMenuItemClickListener {
+            viewModel.addProduct(product.id)
+            return@setOnMenuItemClickListener false
+        }
     }
 
 }

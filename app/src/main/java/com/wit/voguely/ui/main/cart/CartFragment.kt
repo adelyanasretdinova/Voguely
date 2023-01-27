@@ -55,5 +55,4 @@ class CartFragment : Fragment() {
 
         binding.cartRecyclerView.adapter = adapter
     }
-
 }

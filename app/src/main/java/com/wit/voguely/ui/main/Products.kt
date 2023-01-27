@@ -17,31 +17,3 @@ data class Products(
 
 
 
-class ProductsInCart(
-    var image: Int,
-    var name: String,
-    var price: String,
-)
-
-var productCartOne: ProductsInCart = ProductsInCart(
-    R.drawable.watch,
-    "Humidifyer",
-    "800 EUR",
-)
-
-var productCartTwo: ProductsInCart = ProductsInCart(
-    R.drawable.phone,
-    "Phone",
-    "500 EUR",
-)
-var productCartThree: ProductsInCart = ProductsInCart(
-    R.drawable.headphoneswhite,
-    "Humidifyer",
-    "800 EUR",
-)
-
-var productCartFour: ProductsInCart = ProductsInCart(
-    R.drawable.watch,
-    "Phone",
-    "100 EUR",
-)

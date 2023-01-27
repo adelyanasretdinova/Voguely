@@ -77,5 +77,10 @@ class HomeFragment : Fragment() {
         val inflater = popupMenu.menuInflater
         inflater.inflate(R.menu.pop_up_menu, popupMenu.menu)
         popupMenu.show()
+
+        popupMenu.setOnMenuItemClickListener {
+            viewModel.addProduct(product.id)
+            return@setOnMenuItemClickListener false
+        }
     }
 }

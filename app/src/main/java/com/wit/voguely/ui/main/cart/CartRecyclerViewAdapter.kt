@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wit.voguely.databinding.OneItemInCartBinding
-import com.wit.voguely.ui.main.Products
-import com.wit.voguely.ui.main.ProductsInCart
+import com.wit.voguely.ui.main.CartResponse
+
 
 class CartRecyclerViewAdapter() :
     RecyclerView.Adapter<CartRecyclerViewAdapter.ViewHolder>() {
 
-    var productsInCart = listOf<ProductsInCart>()
-    var onItemClick: ((ProductsInCart) -> Unit)? = null
+    var productsInCart = listOf<CartResponse>()
+    var onItemClick: ((CartResponse) -> Unit)? = null
 
 
     inner class ViewHolder(val binding: OneItemInCartBinding) :
@@ -29,12 +29,12 @@ class CartRecyclerViewAdapter() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Glide
-            .with(holder.itemView.context)
-            .load(productsInCart[position].image)
-            .into(holder.binding.image)
-        holder.binding.name.text = productsInCart[position].name
-        holder.binding.price.text = productsInCart[position].price.toString()
+//        Glide
+//            .with(holder.itemView.context)
+//            .load(productsInCart[position].image)
+//            .into(holder.binding.image)
+//        holder.binding.name.text = productsInCart[position].name
+//        holder.binding.price.text = productsInCart[position].price.toString()
 
     }
 
