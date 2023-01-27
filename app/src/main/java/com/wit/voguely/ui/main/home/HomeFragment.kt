@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,8 @@ import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentHomeBinding
 import com.wit.voguely.ui.main.Products
 import com.wit.voguely.ui.main.RecyclerViewAdapter
+import com.wit.voguely.ui.main.pdp.AddedSuccessfully
+import com.wit.voguely.ui.main.pdp.ItemAdded
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -51,6 +54,11 @@ class HomeFragment : Fragment() {
                 binding.progressbar.isVisible = it
             }
         }
+        lifecycleScope.launch {
+            viewModel.event.collectLatest { event ->
+                setMessage(event)
+            }
+        }
         adapter.onItemClick = {
             productClicked(it)
         }
@@ -81,6 +89,16 @@ class HomeFragment : Fragment() {
         popupMenu.setOnMenuItemClickListener {
             viewModel.addProduct(product.id)
             return@setOnMenuItemClickListener false
+        }
+    }
+
+    private fun setMessage(event: ItemAdded) {
+        when (event) {
+            is AddedSuccessfully -> Toast.makeText(
+                requireContext(),
+                "Item added to cart",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 }

@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentPDPBinding
-import com.wit.voguely.remote.ProductDataSource
-import com.wit.voguely.ui.main.Products
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -62,13 +59,26 @@ class PDPFragment : Fragment() {
             }
         }
 
-        binding.addToCart.setOnClickListener{
+        binding.addToCart.setOnClickListener {
             if (idProduct != null) {
                 viewModel.addProduct(idProduct)
             }
-            // when carts.contains(id)
-//            quantity ++
         }
-
+        lifecycleScope.launch {
+            viewModel.event.collectLatest { event ->
+                setMessage(event)
+            }
+        }
     }
+
+    private fun setMessage(event: ItemAdded) {
+        when (event) {
+            is AddedSuccessfully -> Toast.makeText(
+                requireContext(),
+                "Item added to cart",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
 }

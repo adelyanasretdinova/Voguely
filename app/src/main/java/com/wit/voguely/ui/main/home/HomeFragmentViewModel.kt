@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.wit.voguely.remote.AddToCartDataSource
 import com.wit.voguely.remote.ProductsDataSource
 import com.wit.voguely.ui.main.Products
+import com.wit.voguely.ui.main.pdp.AddedSuccessfully
+import com.wit.voguely.ui.main.pdp.ItemAdded
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 
@@ -19,6 +19,8 @@ class HomeFragmentViewModel : ViewModel() {
     val productData = _productData.asStateFlow()
     private val _liveProgressBar = MutableStateFlow<Boolean>(false)
     val liveProgressBar = _liveProgressBar.asStateFlow()
+    private val _event = MutableSharedFlow<ItemAdded>()
+    val event = _event.asSharedFlow()
 
     init {
         dataLoad()
@@ -36,6 +38,7 @@ class HomeFragmentViewModel : ViewModel() {
     fun addProduct(id:String) {
         viewModelScope.launch (Dispatchers.IO)  {
             addToCartDataSource.addProduct(id)
+            _event.emit(AddedSuccessfully)
         }
     }
 }

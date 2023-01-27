@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.wit.voguely.remote.AddToCartDataSource
 import com.wit.voguely.remote.ProductsDataSource
 import com.wit.voguely.ui.main.Products
+import com.wit.voguely.ui.main.pdp.AddedSuccessfully
+import com.wit.voguely.ui.main.pdp.ItemAdded
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
@@ -18,6 +18,8 @@ class SearchViewModel : ViewModel() {
     val searchedItems = _searchedItems.asStateFlow()
     private val _noResult = MutableStateFlow<Boolean>(false)
     val noResult = _noResult.asStateFlow()
+    private val _event = MutableSharedFlow<ItemAdded>()
+    val event = _event.asSharedFlow()
 
 
     fun search(s: CharSequence) {
@@ -34,6 +36,7 @@ class SearchViewModel : ViewModel() {
     fun addProduct(id:String) {
         viewModelScope.launch (Dispatchers.IO)  {
             addToCartDataSource.addProduct(id)
+            _event.emit(AddedSuccessfully)
         }
     }
 }

@@ -32,11 +32,11 @@ class CartViewModel : ViewModel() {
 //            productCartFour
 //        )
 
-        viewModelScope.launch {
-            _productinCart.update {productsInCartDataSource.getProductsInCart()}
-            _emptyCart.update { _productinCart.value.isEmpty() }
+//        viewModelScope.launch {
+//            _productinCart.update {productsInCartDataSource.getProductsInCart()}
+//            _emptyCart.update { _productinCart.value.isEmpty() }
 //            _totalAmount.update { products.sumOf { it.price.split(" ")[0].toInt() }}
-        }
+//        }
 
     }
 }

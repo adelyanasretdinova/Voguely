@@ -8,13 +8,23 @@ import kotlinx.coroutines.tasks.await
 
 class ProductsInCartDataSource {
 
-    suspend fun getProductsInCart():List<CartResponse> {
-
-        val result = Firebase.database("https://voguely-cd971-default-rtdb.europe-west1.firebasedatabase.app")
-            .getReference("carts")
-            .get()
-            .await()
-
-        return result.children.mapNotNull { it.getValue(CartResponse::class.java) }
-    }
+//    suspend fun getProductsInCart(id:String):List<Products> {
+//
+//        val result = Firebase.database("https://voguely-cd971-default-rtdb.europe-west1.firebasedatabase.app")
+//            .getReference("carts")
+//            .get()
+//            .await()
+//
+//        val productId = result.child(id).getValue(CartResponse::class.java)
+//
+//        val result2 = Firebase.database("https://voguely-cd971-default-rtdb.europe-west1.firebasedatabase.app")
+//            .getReference("products")
+////            .orderByChild(productId)
+//            .equalTo(productId)
+//            .get()
+//            .await()
+//
+//
+//        return result2.children.mapNotNull { it.getValue(Products::class.java) }
+//    }
 }
