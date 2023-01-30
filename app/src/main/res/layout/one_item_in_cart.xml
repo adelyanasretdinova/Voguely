@@ -62,8 +62,7 @@
                 android:id="@+id/itemsOrdered"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="x1" />
+                android:layout_marginTop="50dp" />
         </LinearLayout>
 
     </LinearLayout>

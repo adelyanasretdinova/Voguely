@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.wit.voguely.databinding.FragmentCartBinding
+import com.wit.voguely.ui.main.ProductInCart
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -52,7 +53,17 @@ class CartFragment : Fragment() {
             }
         }
 
+        adapter.onItemClick = {
+            viewModel.deleteItemFromCart(it.product.id)
+        }
+
 
         binding.cartRecyclerView.adapter = adapter
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadProductsInCart()
+    }
+
 }
