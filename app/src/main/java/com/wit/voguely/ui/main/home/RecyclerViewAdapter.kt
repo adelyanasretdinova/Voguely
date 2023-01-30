@@ -1,4 +1,4 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.ui.main.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wit.voguely.databinding.OneItemBinding
+import com.wit.voguely.ui.main.Products
 
 class RecyclerViewAdapter() :
 

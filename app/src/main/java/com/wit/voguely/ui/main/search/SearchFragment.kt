@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentSearchBinding
 import com.wit.voguely.ui.main.Products
-import com.wit.voguely.ui.main.RecyclerViewAdapter
+import com.wit.voguely.ui.main.home.RecyclerViewAdapter
 import com.wit.voguely.ui.main.pdp.AddedSuccessfully
 import com.wit.voguely.ui.main.pdp.ItemAdded
 import kotlinx.coroutines.flow.collectLatest
@@ -121,7 +121,7 @@ class SearchFragment : Fragment() {
             is AddedSuccessfully -> Toast.makeText(
                 requireContext(),
                 "Item added to cart",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         }
     }

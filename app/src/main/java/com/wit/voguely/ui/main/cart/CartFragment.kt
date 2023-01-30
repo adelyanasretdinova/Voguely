@@ -35,6 +35,10 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.buttonBuy.setOnClickListener{
+            viewModel.deleteAll()
+        }
+
         lifecycleScope.launch {
             viewModel.productinCart.collectLatest {
                 adapter.productsInCart = it

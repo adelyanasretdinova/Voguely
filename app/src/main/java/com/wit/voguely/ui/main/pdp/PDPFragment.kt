@@ -76,7 +76,7 @@ class PDPFragment : Fragment() {
             is AddedSuccessfully -> Toast.makeText(
                 requireContext(),
                 "Item added to cart",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         }
     }

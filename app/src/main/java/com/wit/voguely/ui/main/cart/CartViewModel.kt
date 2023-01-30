@@ -42,7 +42,13 @@ class CartViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             productDeleteFromCart.deleteProduct(id)
             loadProductsInCart()
-//            _event.emit(AddedSuccessfully)
+        }
+    }
+
+    fun deleteAll() {
+        viewModelScope.launch(Dispatchers.IO) {
+            productDeleteFromCart.deleteAll()
+            loadProductsInCart()
         }
     }
 }
