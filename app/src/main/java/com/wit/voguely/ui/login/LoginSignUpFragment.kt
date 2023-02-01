@@ -80,6 +80,16 @@ class LoginSignUpFragment : Fragment() {
                 Toast.LENGTH_LONG
             ).show()
             is LoginSuccess -> navigateToMain()
+            is LoginFailPass -> Toast.makeText(
+                requireContext(),
+                "Password should be at least 6 characters",
+                Toast.LENGTH_LONG
+            ).show()
+            is LoginFailEmail -> Toast.makeText(
+                requireContext(),
+                "Please check if your email is correct",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 

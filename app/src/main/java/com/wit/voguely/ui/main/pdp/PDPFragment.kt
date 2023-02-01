@@ -36,6 +36,8 @@ class PDPFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val idProduct = arguments?.getString("id")
+        val urlProduct = arguments?.getString("url")
+
 
         if (idProduct != null) {
             viewModel.oneProductLoad(idProduct)
@@ -64,6 +66,10 @@ class PDPFragment : Fragment() {
                 viewModel.addProduct(idProduct)
             }
         }
+//        binding.bigimage.setOnLongClickListener {
+//            viewModel.savePhoto(urlProduct)
+//        }
+
         lifecycleScope.launch {
             viewModel.event.collectLatest { event ->
                 setMessage(event)

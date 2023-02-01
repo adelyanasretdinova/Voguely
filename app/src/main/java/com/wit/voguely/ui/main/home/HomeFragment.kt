@@ -72,6 +72,7 @@ class HomeFragment : Fragment() {
     private fun productClicked(product: Products) {
         val bundle = Bundle()
         bundle.putString("id", product.id)
+        bundle.putString("url", product.image)
 
         parentFragment
             ?.parentFragment

@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupWindow
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentCartBinding
 import com.wit.voguely.ui.main.ProductInCart
 import kotlinx.coroutines.flow.collectLatest
@@ -35,9 +39,17 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonBuy.setOnClickListener{
+
+
+        binding.buttonBuy.setOnClickListener {
             viewModel.deleteAll()
+            binding.checkbox.visibility = View.VISIBLE
+            binding.checkbox.postDelayed({
+                binding.checkbox.visibility = View.GONE
+            }, 2000)
+
         }
+
 
         lifecycleScope.launch {
             viewModel.productinCart.collectLatest {

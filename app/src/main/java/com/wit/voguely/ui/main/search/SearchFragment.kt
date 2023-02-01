@@ -55,7 +55,7 @@ class SearchFragment : Fragment() {
 
         lifecycleScope.launch{
             viewModel.noResult.collectLatest {
-                binding.group.isVisible = it
+                binding.group.isVisible = view.isVisible
             }
         }
         lifecycleScope.launch {

@@ -1,5 +1,6 @@
 package com.wit.voguely.ui.login
 
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
@@ -37,11 +38,18 @@ class LoginSignUpViewModel : ViewModel() {
                 .await()
             _event.emit(LoginSuccess)
         } catch (e: Exception) {
-            _event.emit(LoginFail(e.localizedMessage))
+            if (password.length < 6) {
+                _event.emit(LoginFailPass)
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                _event.emit(LoginFailEmail)
+            } else {
+                _event.emit(LoginFail(e.localizedMessage))
+            }
         }
     }
 
     private fun logIn(email: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
+
         try {
             Firebase.auth
                 .signInWithEmailAndPassword(email, password)
