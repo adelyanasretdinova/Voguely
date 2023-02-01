@@ -18,7 +18,6 @@
             android:layout_margin="10dp"
             android:contentDescription="@string/productimage"
             android:scaleType="centerCrop"
-            app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +51,6 @@
             android:layout_marginEnd="10dp"
             android:textColor="@color/darkgrey"
             app:drawableStartCompat="@drawable/ic_baseline_star_24"
-
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/price" />
 

@@ -3,19 +3,15 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:enabled="true"
         android:icon="@drawable/home"
         android:title="@string/home"
         />
     <item
         android:id="@+id/searchFragment"
-        android:enabled="true"
         android:icon="@drawable/search"
         android:title="@string/search"/>
     <item
         android:id="@+id/cartFragment"
-        android:enabled="true"
         android:icon="@drawable/cart"
-        android:title="@string/cart"
-        android:drawableTint="@color/darkgrey"/>
+        android:title="@string/cart"/>
 </menu>

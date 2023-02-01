@@ -11,8 +11,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class LoginSignUpViewModel : ViewModel() {
+
     private val _selectedTab = MutableStateFlow(SelectedTab.LOGIN)
     val selectedTab = _selectedTab.asStateFlow()
+
     private val _event = MutableSharedFlow<LoginEvent>()
     val event = _event.asSharedFlow()
 
@@ -24,6 +26,13 @@ class LoginSignUpViewModel : ViewModel() {
 
     fun buttonClicked(email: String, password: String) {
         viewModelScope.launch {
+            if (password.length < 6) {
+                _event.emit(LoginFailPass)
+                return@launch
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                _event.emit(LoginFailEmail)
+                return@launch
+            }
             when (selectedTab.value) {
                 SelectedTab.SIGN_UP -> signUp(email, password)
                 SelectedTab.LOGIN -> logIn(email, password)
@@ -38,18 +47,11 @@ class LoginSignUpViewModel : ViewModel() {
                 .await()
             _event.emit(LoginSuccess)
         } catch (e: Exception) {
-            if (password.length < 6) {
-                _event.emit(LoginFailPass)
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                _event.emit(LoginFailEmail)
-            } else {
-                _event.emit(LoginFail(e.localizedMessage))
-            }
+            _event.emit(LoginFail(e.localizedMessage))
         }
     }
 
     private fun logIn(email: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
-
         try {
             Firebase.auth
                 .signInWithEmailAndPassword(email, password)

@@ -1,4 +1,4 @@
-package com.wit.voguely.ui.main
+package com.wit.voguely.model
 
 import com.google.firebase.database.IgnoreExtraProperties
 
@@ -13,6 +13,3 @@ data class Products(
     val currency: String = "",
     val description: String = ""
 )
-
-
-

@@ -5,7 +5,6 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainViewModel : ViewModel() {
 
-
     fun signOut() {
         FirebaseAuth.getInstance().signOut()
     }

@@ -13,21 +13,23 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentHomeBinding
-import com.wit.voguely.ui.main.Products
+import com.wit.voguely.model.Products
 import com.wit.voguely.ui.main.pdp.AddedSuccessfully
 import com.wit.voguely.ui.main.pdp.ItemAdded
+import com.wit.voguely.ui.main.pdp.PDPFragment.Companion.PRODUCT_ID_ARG
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
+
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeFragmentViewModel
-    private val adapter: RecyclerViewAdapter = RecyclerViewAdapter()
+
+    private val adapter: ProductsAdapter = ProductsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
-
     }
 
     override fun onCreateView(
@@ -41,19 +43,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productData.collectLatest {
                 adapter.itemsList = it
                 adapter.notifyDataSetChanged()
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.liveProgressBar.collectLatest {
                 binding.progressbar.isVisible = it
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.event.collectLatest { event ->
                 setMessage(event)
             }
@@ -64,15 +65,13 @@ class HomeFragment : Fragment() {
         adapter.dropDownClick = { product, view ->
             onDropDownMenuClick(product, view)
         }
-
         binding.recycleView.adapter = adapter
     }
 
 
     private fun productClicked(product: Products) {
         val bundle = Bundle()
-        bundle.putString("id", product.id)
-        bundle.putString("url", product.image)
+        bundle.putString(PRODUCT_ID_ARG, product.id)
 
         parentFragment
             ?.parentFragment
@@ -96,7 +95,7 @@ class HomeFragment : Fragment() {
         when (event) {
             is AddedSuccessfully -> Toast.makeText(
                 requireContext(),
-                "Item added to cart",
+                "Item added to cart", // TODO: Extract string resource
                 Toast.LENGTH_SHORT
             ).show()
         }

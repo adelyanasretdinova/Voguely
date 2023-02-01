@@ -15,10 +15,6 @@ import com.wit.voguely.databinding.FragmentSplashBinding
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,9 +36,7 @@ class SplashFragment : Fragment() {
                     true -> R.id.action_splashFragment_to_loginSignUpFragment
                     false -> R.id.action_splashFragment_to_mainFragment
                 }
-                findNavController().navigate(
-                    action
-                )
+                findNavController().navigate(action)
             }
             .start()
     }

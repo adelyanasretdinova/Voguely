@@ -6,23 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wit.voguely.databinding.OneItemBinding
-import com.wit.voguely.ui.main.Products
+import com.wit.voguely.model.Products
 
-class RecyclerViewAdapter() :
-
-    RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class ProductsAdapter() : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     var itemsList = listOf<Products>()
-    var onItemClick: ((Products) -> Unit)? = null
-    var dropDownClick: ((Products, View) -> Unit)? = null
+    var onItemClick: ((Products) -> Unit) = { }
+    var dropDownClick: ((Products, View) -> Unit) = { _, _ -> }
 
     inner class ViewHolder(val binding: OneItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.image.setOnClickListener {
-                onItemClick?.invoke(itemsList[adapterPosition])
+                onItemClick(itemsList[adapterPosition])
             }
             binding.dropdownMenu.setOnClickListener {
-                dropDownClick?.invoke(itemsList[adapterPosition], it)
+                dropDownClick(itemsList[adapterPosition], it)
             }
         }
     }

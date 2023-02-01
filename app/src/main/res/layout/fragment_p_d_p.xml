@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
         android:id="@+id/bigimage"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,10 +19,10 @@
         android:id="@+id/fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:textSize="22sp"
         android:textStyle="bold"
+        tools:text="Product Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bigimage" />
 
@@ -30,7 +31,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginEnd="30dp"
+        tools:text="4.3"
         android:textColor="@color/darkgrey"
         app:drawableEndCompat="@drawable/ic_baseline_star_24"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textColor="@color/red"
+        tools:text="EUR 300"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/fullname"
@@ -52,7 +54,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
+        tools:text="Some random description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/fullname"
         app:layout_constraintTop_toBottomOf="@+id/priceTag" />

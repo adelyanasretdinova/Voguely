@@ -14,28 +14,25 @@ import kotlinx.coroutines.launch
 class CartViewModel : ViewModel() {
     private val productsInCartDataSource = ProductsInCartDataSource()
     private val productDeleteFromCart = ProductDeleteFromCart()
-    private val _productinCart = MutableStateFlow<List<ProductInCart>>(listOf())
-    val productinCart = _productinCart.asStateFlow()
-    private val _emptyCart = MutableStateFlow<Boolean>(false)
+
+    private val _productInCart = MutableStateFlow<List<ProductInCart>>(listOf())
+    val productInCart = _productInCart.asStateFlow()
+
+    private val _emptyCart = MutableStateFlow(false)
     val emptyCart = _emptyCart.asStateFlow()
-    private val _totalAmount = MutableStateFlow<Int>(0)
+
+    private val _totalAmount = MutableStateFlow(0)
     val totalAmount = _totalAmount.asStateFlow()
 
-
     fun loadProductsInCart() {
-
         viewModelScope.launch {
-            _productinCart.update { productsInCartDataSource.getProductsInCart() }
-            _emptyCart.update { _productinCart.value.isEmpty() }
+            _productInCart.update { productsInCartDataSource.getProductsInCart() }
+            _emptyCart.update { _productInCart.value.isEmpty() }
             _totalAmount.update {
-
-                _productinCart.value.sumOf { it.product.price * it.quantity }
-
+                _productInCart.value.sumOf { it.product.price * it.quantity }
             }
         }
-
     }
-
 
     fun deleteItemFromCart(id: String) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -14,8 +14,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/searchbackground"
         android:hint="Search Product Name"
-        android:padding="4dp"
-        android:queryHint="Search Product Name"
+        android:padding="10dp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,27 +32,30 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="15dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchbar"
-        app:spanCount="2" />
+        app:spanCount="2"
+        tools:listitem="@layout/one_item" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="noResult,noResultImage" />
+        app:constraint_referenced_ids="noResult,noResultImage"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/noResultImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="300dp"
         android:src="@drawable/warning"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchbar"
@@ -63,7 +65,6 @@
         android:id="@+id/noResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:text="No results found"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

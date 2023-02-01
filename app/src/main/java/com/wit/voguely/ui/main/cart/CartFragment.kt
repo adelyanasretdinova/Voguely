@@ -13,8 +13,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class CartFragment : Fragment() {
+
     private lateinit var binding: FragmentCartBinding
     private lateinit var viewModel: CartViewModel
+
     private val adapter: CartRecyclerViewAdapter = CartRecyclerViewAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +35,6 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
         binding.buttonBuy.setOnClickListener {
             viewModel.deleteAll()
             binding.checkbox.visibility = View.VISIBLE
@@ -46,7 +45,7 @@ class CartFragment : Fragment() {
 
 
         lifecycleScope.launch {
-            viewModel.productinCart.collectLatest {
+            viewModel.productInCart.collectLatest {
                 adapter.productsInCart = it
                 adapter.notifyDataSetChanged()
             }
@@ -59,14 +58,13 @@ class CartFragment : Fragment() {
         }
         lifecycleScope.launch {
             viewModel.totalAmount.collectLatest {
-                binding.totalAmout.text = "EUR ${it}"
+                binding.totalAmout.text = "EUR $it"
             }
         }
 
         adapter.onItemClick = {
             viewModel.deleteItemFromCart(it.product.id)
         }
-
 
         binding.cartRecyclerView.adapter = adapter
     }

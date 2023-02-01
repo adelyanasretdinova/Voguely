@@ -17,13 +17,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class LoginSignUpFragment : Fragment() {
+
     private lateinit var binding: FragmentLoginSignUpBinding
     private lateinit var viewModel: LoginSignUpViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[LoginSignUpViewModel::class.java]
-
     }
 
     override fun onCreateView(
@@ -82,7 +82,7 @@ class LoginSignUpFragment : Fragment() {
             is LoginSuccess -> navigateToMain()
             is LoginFailPass -> Toast.makeText(
                 requireContext(),
-                "Password should be at least 6 characters",
+                getString(R.string.password_length_message),
                 Toast.LENGTH_LONG
             ).show()
             is LoginFailEmail -> Toast.makeText(

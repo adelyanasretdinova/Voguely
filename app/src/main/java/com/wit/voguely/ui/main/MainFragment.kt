@@ -14,15 +14,14 @@ import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
+
     private lateinit var binding: FragmentMainBinding
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

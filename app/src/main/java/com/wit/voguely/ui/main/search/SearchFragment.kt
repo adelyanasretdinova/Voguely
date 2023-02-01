@@ -15,23 +15,24 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentSearchBinding
-import com.wit.voguely.ui.main.Products
-import com.wit.voguely.ui.main.home.RecyclerViewAdapter
+import com.wit.voguely.model.Products
+import com.wit.voguely.ui.main.home.ProductsAdapter
 import com.wit.voguely.ui.main.pdp.AddedSuccessfully
 import com.wit.voguely.ui.main.pdp.ItemAdded
+import com.wit.voguely.ui.main.pdp.PDPFragment.Companion.PRODUCT_ID_ARG
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
+
     private lateinit var binding: FragmentSearchBinding
-    private val adapter: RecyclerViewAdapter = RecyclerViewAdapter()
     private lateinit var viewModel: SearchViewModel
 
+    private val adapter: ProductsAdapter = ProductsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
-
     }
 
     override fun onCreateView(
@@ -55,10 +56,10 @@ class SearchFragment : Fragment() {
 
         lifecycleScope.launch{
             viewModel.noResult.collectLatest {
-                binding.group.isVisible = view.isVisible
+                binding.group.isVisible = it
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.event.collectLatest { event ->
                 setMessage(event)
             }
@@ -86,7 +87,6 @@ class SearchFragment : Fragment() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-
                 viewModel.search(s)
             }
         })
@@ -96,7 +96,7 @@ class SearchFragment : Fragment() {
 
     private fun productClicked(product: Products) {
         val bundle = Bundle()
-        bundle.putString("id", product.id)
+        bundle.putString(PRODUCT_ID_ARG, product.id)
 
         parentFragment
             ?.parentFragment
@@ -120,7 +120,7 @@ class SearchFragment : Fragment() {
         when (event) {
             is AddedSuccessfully -> Toast.makeText(
                 requireContext(),
-                "Item added to cart",
+                "Item added to cart", // TODO: Extract string resouce
                 Toast.LENGTH_SHORT
             ).show()
         }

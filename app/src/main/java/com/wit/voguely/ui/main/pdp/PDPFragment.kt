@@ -15,6 +15,11 @@ import kotlinx.coroutines.launch
 
 
 class PDPFragment : Fragment() {
+
+    companion object {
+        const val PRODUCT_ID_ARG = "id"
+    }
+
     private lateinit var binding: FragmentPDPBinding
     private lateinit var viewModel: PDPViewModel
 
@@ -35,42 +40,38 @@ class PDPFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val idProduct = arguments?.getString("id")
-        val urlProduct = arguments?.getString("url")
-
+        val idProduct = arguments?.getString(PRODUCT_ID_ARG)
 
         if (idProduct != null) {
             viewModel.oneProductLoad(idProduct)
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.product.collectLatest {
-                if (it != null) {
-                    Glide
-                        .with(requireContext())
-                        .load(it.image)
-                        .into(binding.bigimage)
+                if (it == null) return@collectLatest
 
-                    binding.fullname.text = it.name
-                    binding.rating.text = it.rating.toString()
-                    binding.description.text = it.description
-                    val amount = it.price.toString()
-                    val eur = it.currency
-                    binding.priceTag.text = eur + amount
-                }
+                Glide
+                    .with(requireContext())
+                    .load(it.image)
+                    .into(binding.bigimage)
+
+                binding.fullname.text = it.name
+                binding.rating.text = it.rating.toString()
+                binding.description.text = it.description
+                val amount = it.price.toString()
+                val eur = it.currency
+                binding.priceTag.text = eur + amount
             }
         }
 
         binding.addToCart.setOnClickListener {
-            if (idProduct != null) {
-                viewModel.addProduct(idProduct)
-            }
+            viewModel.addProduct()
         }
 //        binding.bigimage.setOnLongClickListener {
 //            viewModel.savePhoto(urlProduct)
 //        }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.event.collectLatest { event ->
                 setMessage(event)
             }
@@ -81,7 +82,7 @@ class PDPFragment : Fragment() {
         when (event) {
             is AddedSuccessfully -> Toast.makeText(
                 requireContext(),
-                "Item added to cart",
+                "Item added to cart", // TODO: Extract string resouce
                 Toast.LENGTH_SHORT
             ).show()
         }

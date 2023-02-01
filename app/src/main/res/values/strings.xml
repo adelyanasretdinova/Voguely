@@ -21,5 +21,6 @@
     <string name="total_price">Total Price:</string>
     <string name="cart_empty">Cart empty</string>
     <string name="add_to_cart">Add to cart</string>
+    <string name="password_length_message">Password should be at least 6 characters</string>
 
 </resources>
