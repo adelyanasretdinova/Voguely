@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wit.voguely.databinding.OneItemInCartBinding
-import com.wit.voguely.ui.main.ProductInCart
 
 
 class CartRecyclerViewAdapter() :
@@ -18,11 +17,11 @@ class CartRecyclerViewAdapter() :
     inner class ViewHolder(val binding: OneItemInCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-            init {
-                binding.delete.setOnClickListener{
-                    onItemClick?.invoke(productsInCart[adapterPosition])
-                }
+        init {
+            binding.delete.setOnClickListener {
+                onItemClick?.invoke(productsInCart[adapterPosition])
             }
+        }
     }
 
     override fun onCreateViewHolder(
@@ -43,7 +42,7 @@ class CartRecyclerViewAdapter() :
         val eur = productsInCart[position].product.currency
         val amount = productsInCart[position].product.price.toString()
         holder.binding.price.text = eur + amount
-        holder.binding.itemsOrdered.text = "x"+productsInCart[position].quantity.toString()
+        holder.binding.itemsOrdered.text = "x" + productsInCart[position].quantity.toString()
 
     }
 

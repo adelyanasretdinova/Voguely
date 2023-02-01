@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wit.voguely.remote.ProductDeleteFromCart
 import com.wit.voguely.remote.ProductsInCartDataSource
-import com.wit.voguely.ui.main.ProductInCart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

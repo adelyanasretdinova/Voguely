@@ -1,28 +1,19 @@
 package com.wit.voguely.ui.main.pdp
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.os.Environment
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wit.voguely.R
 import com.wit.voguely.remote.AddToCartDataSource
 import com.wit.voguely.remote.ProductDataSource
-import com.wit.voguely.ui.login.LoginEvent
 import com.wit.voguely.ui.main.Products
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import okhttp3.*
-import java.io.FileOutputStream
 import java.io.IOException
-import java.io.OutputStream
 
-class PDPViewModel(private val context: Context): ViewModel() {
+class PDPViewModel(private val context: Context) : ViewModel() {
     private val productDataSource = ProductDataSource()
     private val addToCartDataSource = AddToCartDataSource()
     private val _product = MutableStateFlow<Products?>(null)
@@ -31,20 +22,21 @@ class PDPViewModel(private val context: Context): ViewModel() {
     val event = _event.asSharedFlow()
 
 
-    fun oneProductLoad(id:String) {
+    fun oneProductLoad(id: String) {
 
         viewModelScope.launch {
             _product.update { productDataSource.getProducts(id) }
         }
-}
-    fun addProduct(id:String) {
-        viewModelScope.launch (Dispatchers.IO)  {
+    }
+
+    fun addProduct(id: String) {
+        viewModelScope.launch(Dispatchers.IO) {
             addToCartDataSource.addProduct(id)
             _event.emit(AddedSuccessfully)
         }
     }
 
-    fun savePhoto(url:String) {
+    fun savePhoto(url: String) {
         val request = Request.Builder().url(url).build()
         val client = OkHttpClient()
         viewModelScope.launch(Dispatchers.IO) {
@@ -60,7 +52,7 @@ class PDPViewModel(private val context: Context): ViewModel() {
                     }
                 }
             })
-    }
+        }
 
     }
 }

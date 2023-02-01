@@ -35,8 +35,8 @@ class HomeFragmentViewModel : ViewModel() {
         }
     }
 
-    fun addProduct(id:String) {
-        viewModelScope.launch (Dispatchers.IO)  {
+    fun addProduct(id: String) {
+        viewModelScope.launch(Dispatchers.IO) {
             addToCartDataSource.addProduct(id)
             _event.emit(AddedSuccessfully)
         }

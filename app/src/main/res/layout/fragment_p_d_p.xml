@@ -8,8 +8,8 @@
         android:id="@+id/bigimage"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,8 +18,8 @@
         android:id="@+id/fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,41 +30,42 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
+        android:layout_marginEnd="30dp"
         android:textColor="@color/darkgrey"
         app:drawableEndCompat="@drawable/ic_baseline_star_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fullname"
-        android:layout_marginEnd="30dp"/>
+        app:layout_constraintTop_toTopOf="@id/fullname" />
 
     <TextView
         android:id="@+id/priceTag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/fullname"
-        app:layout_constraintStart_toStartOf="@id/fullname"
-        android:textColor="@color/red"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"/>
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/fullname"
+        app:layout_constraintTop_toBottomOf="@id/fullname" />
+
     <TextView
         android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/fullname"
-        app:layout_constraintTop_toBottomOf="@+id/priceTag"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"/>
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/fullname"
+        app:layout_constraintTop_toBottomOf="@+id/priceTag" />
+
     <Button
         android:id="@+id/addToCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp"
         android:paddingHorizontal="90dp"
         android:text="Add to cart"
-        android:layout_marginBottom="20dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,16 +19,7 @@
     <string name="productimage">productImage</string>
     <string name="buy">Buy</string>
     <string name="total_price">Total Price:</string>
-    <string name="no_results_found">No results found</string>
+    <string name="cart_empty">Cart empty</string>
     <string name="add_to_cart">Add to cart</string>
 
-
-    <string-array name="products_array">
-        <item> "Headphones" </item>
-        <item> "Phone" </item>
-        <item> "Watch" </item>
-        <item> "Headphones" </item>
-        <item> "Phone" </item>
-        <item> "Watch" </item>
-    </string-array>
 </resources>

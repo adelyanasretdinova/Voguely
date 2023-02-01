@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
             productClicked(it)
         }
         adapter.dropDownClick = { product, view ->
-            onDropDownMenuClick (product, view)
+            onDropDownMenuClick(product, view)
         }
 
         binding.recycleView.adapter = adapter

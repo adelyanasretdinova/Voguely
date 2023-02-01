@@ -18,7 +18,6 @@
             android:layout_margin="10dp"
             android:contentDescription="@string/productimage"
             android:scaleType="centerCrop"
-            android:src="@drawable/headphones"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,9 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="7dp"
-            android:text="HeadphonesGHp"
             android:textColor="@color/black"
-            android:textFontWeight="@integer/material_motion_duration_long_2"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/image" />
 
         <TextView
@@ -40,9 +38,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:text="999 EUR"
             android:textColor="@color/red"
-            android:textFontWeight="@integer/material_motion_duration_long_2"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -53,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="10dp"
-            android:text="4.9"
             android:textColor="@color/darkgrey"
             app:drawableStartCompat="@drawable/ic_baseline_star_24"
 
@@ -66,7 +62,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="7dp"
-            android:text="68 Reviews"
             android:textColor="@color/darkgrey"
             app:layout_constraintStart_toEndOf="@id/rating"
             app:layout_constraintTop_toBottomOf="@+id/price" />

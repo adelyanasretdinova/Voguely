@@ -3,7 +3,7 @@ package com.wit.voguely.ui.login
 import com.wit.voguely.R
 
 enum class SelectedTab(
-    val welcomeMessage :Int,
+    val welcomeMessage: Int,
     val buttonText: Int
 ) {
     LOGIN(

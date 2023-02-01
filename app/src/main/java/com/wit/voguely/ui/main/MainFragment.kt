@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -13,7 +12,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentMainBinding
-import com.wit.voguely.ui.login.LoginSignUpViewModel
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -54,7 +52,7 @@ class MainFragment : Fragment() {
 
     private fun setUpToolbar() {
         binding.toolbar.inflateMenu(R.menu.main_menu)
-        binding.toolbar.menu.findItem(R.id.signOut).setOnMenuItemClickListener{
+        binding.toolbar.menu.findItem(R.id.signOut).setOnMenuItemClickListener {
             viewModel.signOut()
             findNavController().navigate(R.id.action_mainFragment_to_loginSignUpFragment)
             return@setOnMenuItemClickListener false

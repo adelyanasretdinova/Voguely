@@ -3,8 +3,8 @@ package com.wit.voguely.remote
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.wit.voguely.ui.main.ProductInCart
 import com.wit.voguely.ui.main.cart.CartResponse
+import com.wit.voguely.ui.main.cart.ProductInCart
 import kotlinx.coroutines.tasks.await
 
 class ProductsInCartDataSource {

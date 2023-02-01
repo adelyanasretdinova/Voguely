@@ -4,16 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupWindow
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentCartBinding
-import com.wit.voguely.ui.main.ProductInCart
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -47,7 +42,6 @@ class CartFragment : Fragment() {
             binding.checkbox.postDelayed({
                 binding.checkbox.visibility = View.GONE
             }, 2000)
-
         }
 
 
@@ -65,7 +59,7 @@ class CartFragment : Fragment() {
         }
         lifecycleScope.launch {
             viewModel.totalAmount.collectLatest {
-                        binding.totalAmout.text = "EUR ${it}"
+                binding.totalAmout.text = "EUR ${it}"
             }
         }
 

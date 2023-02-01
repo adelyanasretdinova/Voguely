@@ -34,18 +34,20 @@
         android:id="@+id/productview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@+id/searchbar"
         app:spanCount="2" />
+
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="noResult,noResultImage"/>
+        app:constraint_referenced_ids="noResult,noResultImage" />
+
     <ImageView
         android:id="@+id/noResultImage"
         android:layout_width="80dp"
@@ -66,7 +68,6 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noResultImage"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/noResultImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

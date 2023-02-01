@@ -1,10 +1,10 @@
 package com.wit.voguely.ui.splash
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -12,7 +12,7 @@ import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentSplashBinding
 
 
-class SplashFragment : Fragment(){
+class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
