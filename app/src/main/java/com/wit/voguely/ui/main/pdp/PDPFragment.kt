@@ -26,6 +26,7 @@ class PDPFragment : Fragment() {
     private val adapter: ViewPagerAdapter = ViewPagerAdapter()
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[PDPViewModel::class.java]
@@ -52,7 +53,7 @@ class PDPFragment : Fragment() {
             viewModel.product.collectLatest {
                 if (it == null) return@collectLatest
 
-                adapter.data = listOf(it.image,"https://media.istockphoto.com/id/1088325998/photo/yellow-rubber-boots-isolated-on-white-background-wet-dirty-boots.jpg?s=170667a&w=0&k=20&c=5jVK6yDsUpZC7IF2DJjw0d0x6pM2khQIIEsQdTBnpY0=" )
+                adapter.data = listOf(it.image)
                 adapter.notifyDataSetChanged()
 
                 binding.fullname.text = it.name
@@ -78,6 +79,7 @@ class PDPFragment : Fragment() {
         }
 
         binding.bigimageViewPager.adapter = adapter
+        binding.bigimageViewPager.setPageTransformer(ZoomOutPageTransformer())
     }
 
     private fun setMessage(event: ItemAdded) {

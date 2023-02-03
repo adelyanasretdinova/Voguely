@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import com.wit.voguely.R
 import com.wit.voguely.databinding.FragmentHomeBinding
 import com.wit.voguely.model.Products
@@ -45,8 +46,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productData.collectLatest {
-                adapter.itemsList = it
-                adapter.notifyDataSetChanged()
+                adapter.updateItems(it)
+//                adapter.notifyDataSetChanged() replaced to diffUtil
+
             }
         }
         viewLifecycleOwner.lifecycleScope.launch {

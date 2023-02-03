@@ -3,16 +3,20 @@ package com.wit.voguely.ui.main.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wit.voguely.databinding.OneItemBinding
 import com.wit.voguely.model.Products
+import com.wit.voguely.ui.main.pdp.ProductsDiffCalback
+
 
 class ProductsAdapter() : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     var itemsList = listOf<Products>()
     var onItemClick: ((Products) -> Unit) = { }
     var dropDownClick: ((Products, View) -> Unit) = { _, _ -> }
+
 
     inner class ViewHolder(val binding: OneItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
@@ -43,7 +47,16 @@ class ProductsAdapter() : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
         holder.binding.review.text = itemsList[position].reviews.toString()
     }
 
+
     override fun getItemCount(): Int {
         return itemsList.size
+    }
+
+    fun updateItems(products: List<Products>) {
+        val diffCallback = ProductsDiffCalback(this.itemsList, products)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+        this.itemsList = products
+        diffResult.dispatchUpdatesTo(this)
     }
 }
