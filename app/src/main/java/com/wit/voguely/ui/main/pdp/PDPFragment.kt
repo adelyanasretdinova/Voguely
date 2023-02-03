@@ -52,11 +52,6 @@ class PDPFragment : Fragment() {
             viewModel.product.collectLatest {
                 if (it == null) return@collectLatest
 
-//                Glide
-//                    .with(requireContext())
-//                    .load(it.image)
-//                    .into(binding.bigimageViewPager.st)
-
                 adapter.data = listOf(it.image,"https://media.istockphoto.com/id/1088325998/photo/yellow-rubber-boots-isolated-on-white-background-wet-dirty-boots.jpg?s=170667a&w=0&k=20&c=5jVK6yDsUpZC7IF2DJjw0d0x6pM2khQIIEsQdTBnpY0=" )
                 adapter.notifyDataSetChanged()
 
