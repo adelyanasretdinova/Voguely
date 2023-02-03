@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.wit.voguely.remote.AddToCartDataSource
 import com.wit.voguely.remote.ProductDataSource
 import com.wit.voguely.model.Products
+import com.wit.voguely.ui.main.home.ProductsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

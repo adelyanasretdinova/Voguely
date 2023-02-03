@@ -6,8 +6,8 @@
     android:paddingHorizontal="20dp"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/bigimage"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/bigimageViewPager"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="20dp"
@@ -24,7 +24,7 @@
         android:textStyle="bold"
         tools:text="Product Name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bigimage" />
+        app:layout_constraintTop_toBottomOf="@+id/bigimageViewPager" />
 
     <TextView
         android:id="@+id/rating"

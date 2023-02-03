@@ -24,12 +24,15 @@ class CartViewModel : ViewModel() {
     private val _totalAmount = MutableStateFlow(0)
     val totalAmount = _totalAmount.asStateFlow()
 
+    private val totalPriceCalculator = TotalPriceCalculator()
+
     fun loadProductsInCart() {
         viewModelScope.launch {
-            _productInCart.update { productsInCartDataSource.getProductsInCart() }
+            val products = productsInCartDataSource.getProductsInCart()
+            _productInCart.update { products }
             _emptyCart.update { _productInCart.value.isEmpty() }
             _totalAmount.update {
-                _productInCart.value.sumOf { it.product.price * it.quantity }
+                totalPriceCalculator.getTotalPrice(products)
             }
         }
     }
